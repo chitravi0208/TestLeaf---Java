@@ -1,0 +1,85 @@
+package week2.day2.assignments;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class DuplicateLead {
+	public static void main(String[] args) {
+		WebDriverManager.chromedriver().setup();
+		ChromeDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://leaftaps.com/opentaps/control/main");
+		
+		WebElement usernameElement = driver.findElement(By.id("username"));
+		usernameElement.sendKeys("Demosalesmanager");
+		
+		WebElement passwordElement = driver.findElement(By.id("password"));
+		passwordElement.sendKeys("crmsfa");
+		
+		WebElement loginbutton = driver.findElement(By.className("decorativeSubmit"));
+		loginbutton.click();
+		
+		WebElement crmsfaElement = driver.findElement(By.linkText("CRM/SFA"));
+		crmsfaElement.click();
+		
+		WebElement leadsElement = driver.findElement(By.linkText("Leads"));
+		leadsElement.click();
+		
+		WebElement createleadElement = driver.findElement(By.linkText("Create Lead"));
+		createleadElement.click();
+		
+		WebElement companynameElement = driver.findElement(By.id("createLeadForm_companyName"));
+		companynameElement.sendKeys("Acc");
+		
+		WebElement firstnameElement = driver.findElement(By.id("createLeadForm_firstName"));
+		firstnameElement.sendKeys("Chitra");
+		
+		WebElement lastnameElement = driver.findElement(By.id("createLeadForm_lastName"));
+		lastnameElement.sendKeys("R");
+		
+		WebElement firstnamelocalElement = driver.findElement(By.id("createLeadForm_firstNameLocal"));
+		firstnamelocalElement.sendKeys("Chitu");
+		
+		WebElement departmentElement = driver.findElement(By.id("createLeadForm_departmentName"));
+		departmentElement.sendKeys("Testing");
+		
+		WebElement descriptionElement = driver.findElement(By.id("createLeadForm_description"));
+		descriptionElement.sendKeys("automation test");
+		
+		WebElement emailElement = driver.findElement(By.id("createLeadForm_primaryEmail"));
+		emailElement.sendKeys("abcd@gmail.com");
+		
+		WebElement stateprovinceDropDownElement = driver.findElement(By.id("createLeadForm_generalStateProvinceGeoId"));
+		Select dd5 = new Select(stateprovinceDropDownElement);
+		dd5.selectByVisibleText("New York");
+		
+		WebElement submitElement = driver.findElement(By.className("smallSubmit"));
+		submitElement.click();
+		
+		String t1 = driver.getTitle();
+		System.out.println("Page title is " + t1);
+		
+		WebElement duplicateleadbuttonElement = driver.findElement(By.linkText("Duplicate Lead"));
+		duplicateleadbuttonElement.click();
+		
+		WebElement companynameElement1 = driver.findElement(By.id("createLeadForm_companyName"));
+		companynameElement1.clear();
+		companynameElement1.sendKeys("CTS");
+		
+		WebElement firstnameElement1 = driver.findElement(By.id("createLeadForm_firstName"));
+		firstnameElement1.clear();
+		firstnameElement1.sendKeys("Vignesh");
+		
+		WebElement submitElement1 = driver.findElement(By.className("smallSubmit"));
+		submitElement1.click();
+		
+		String t2 = driver.getTitle();
+		System.out.println("Page title is " + t2);
+		
+	}
+
+}
